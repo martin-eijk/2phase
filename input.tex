@@ -1,0 +1,125 @@
+## Input for the code
+
+# Name file (between ' the with space)
+' Dam_break '
+
+## PARAMETERS
+
+# Density air [kg/m^3] | Density water [kg/m^3] | Dynamic viscosity air [kg/ms] | Dynamic viscosity water [kg/ms]
+1	1000	0 0
+
+# Gravitational constant [x, y]
+0 -9.81
+
+# Surface tension coefficient | Atmospheric pressure [N/m^2] | Gamma air [-]
+0   	1e5 	1.4
+
+# Side with atmospheric pressure (all other walls are closed)
+# North (1) | East (2) | South (3) | West (4)
+3
+
+#-------------------
+## DOMAIN
+
+# Domain dimension [x, z] [m]
+3.22 1.61
+
+# Grid size [x, z]
+80 40
+
+#-------------------
+## CASE
+# Free flow (0)	| Wave (1)
+0
+
+## WAVE
+# Amplitude [m] | Height [m]	| Wave length [m]	| Phase *pi
+0.1 	0.50		1		0
+
+# Cosine (1)	| Sine (0)
+1
+
+# Direction filled: north (1)	| east (2)	|	south (3)	| west (4)
+3
+
+## FREE FLOW
+# PART 1:
+# Way of filling
+# Circle(2) |   Square (3)	|  None (0)
+# Circle [x_begin, z_begin, radius]
+# Square [x_begin, x_end, z_begin, z_end]
+
+# Filling dimension of water [air, way, x_begin, x_end, z_begin, z_end] [m]
+0 3 0 1.21 0 0.55
+
+# Filling dimension of water [water, way, x_begin, x_end, z_begin, z_end] [m]
+0 2 0.5 0.25 0.2 0
+
+#-------------------
+## TIME
+# Time duration [s]	| Time step initial [s]		| Time step min [s]	| Time step max [s] | Iter initial condition
+0.02 0.01 0.0	0.01 	0
+
+# CFL_max | Eps_max error | Omega_0 relaxation Aitken
+0.1		1e-10	1
+
+# CFL crit
+# - Only inertial (1)
+# - Inertial + capillary + viscous (0)
+1
+
+#-------------------
+
+## SIMULATION TYPE
+# Second order upwind (1)	| First order upwind (0) (second-order does not work for one-phase)
+0
+
+# Adam-Bashforth (1)	| Forward Euler (0) (both for the convective as well as diffusive term)
+0
+
+# Height function (1)	| Height function original (2) | None (0)
+0
+
+# Gravity-consistent interpolation (1)	|	Central-weighted averaging (0) (not needed for one-phase)
+0
+
+# PLIC Youngs (1)	| SLIC Hirt Nichols (0)
+1
+
+# Incompressible (0)	| Air compressible (1)
+0
+
+# Macho scheme (1)	|  Cosmic (0) | No-split (2)
+2
+
+# No-slip at wall (-1)	| Free-slip (1)
+1
+
+
+#-------------------
+
+## POSTPROCESSING
+# dir = 1 when you want to measure on position x in height y
+# dir = 0 when you want to measure on position y in height x
+# When value of x/y is negative, measuring from another direction
+# Measurement of water: yes (1)/no (0), (x/y, dir) h1, (x/y, dir) h2, (x/y, dir) h3, (x/y, dir) h4 [m]
+1	2.72 1		0 0 	0 0		0 0
+
+# Measurement of pressure: yes (1)/no (0), (x, y) p1, (x, y) p2, (x, y) p3, (x, y) p4
+1	3.22 0.03 		0 0  0 0		0 0
+
+# Measurement of mass conservation: yes (1)/no (0)
+1
+
+# Save data: yes (1)/no (0), amount of steps, [fraction, velocity, inter_vel, density, pressure, cell]
+0	1	1 1 1 1 1 1
+
+# Save figures: yes (1)/no (0), amount of steps, [fraction, velocity, density, pressure, cell], alpha
+0 	1	1 0 0 1 0	0
+
+# Save VTK: yes (1)/no (0), amount of steps, [fraction, velocity, density, pressure, cell, body]
+1 	1	1 1 1 1 1 1
+
+
+
+
