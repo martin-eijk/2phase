@@ -3,7 +3,7 @@ CFD code able to model two-phase compressible flows.\
 Making use of Volume of Fluid.\
 Made in python.\
 < Martin van der Eijk >\
-< m.vandereijk@tudelft.nl>\
+< m.vandereijk@tudelft.nl>
 
 ## Input file
 The input.txt is the input file.\
